@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from functools import cache
+from functools import cached_property
 from typing import Dict, List, Optional, Tuple
 
 
@@ -45,8 +45,7 @@ class Directory:
 
         return self.get_or_create_child(path)
 
-    @property
-    @cache
+    @cached_property
     def size(self) -> int:
         files_sum = sum(file.size for file in self.files)
         children_sum = sum(child.size for child in self.children.values())
